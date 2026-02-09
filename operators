@@ -1,0 +1,6 @@
+rating=5
+op=("excellent"if rating>=4.5 else
+("good"if rating>=3.75 else
+("average"if rating>=2.5 else
+("blow average"if rating>=1.5 else "poor"))))
+print(op)
