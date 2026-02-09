@@ -1,0 +1,25 @@
+# for num in range(1,30):
+#     if num%2 == 0:
+#         print(num,"num_fizz")
+#     elif num%5 == 0:
+#         print(num,"num_buzz")
+#     elif num%2 == 0 and num%5 == 0:
+#         print(num,"num_fizz & num_buzz")
+#     else:
+#         print("normal")  
+
+reels=[{"reelid":123,"likes":25000,"category":"moves"},
+      {"reelid":124,"likes":12000,"category":"travel"},
+      {"reelid":125,"likes":3000,"categort":"tech"},
+      {"reelid":126,"likes":15000,"category":"food"},
+      ]
+for reel in  reels:
+    if reel ["likes"]>=20000:
+        reel["status"]="super_viral"
+    elif reel["likes"]>=10000:
+        reel["status"]="viral"
+    else:
+        reel["status"]="general"
+    if reel in reels:
+        print(reel)
+          
