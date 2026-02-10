@@ -1,0 +1,16 @@
+# num=1254
+# id1=num%10
+# print("id1:",id1)
+# rn1=num//10
+# print("rn1:",rn1)
+# id2=rn1%10
+# print("id2:",id2)
+# rn2=rn1//10
+# print("rn2:",rn2)
+# implement this using while loop
+
+num = 1254
+while num > 0:
+    id = num %10 
+    print("id", id)
+    num = num // 10 
