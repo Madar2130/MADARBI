@@ -1,0 +1,102 @@
+create database keyd9;
+Query OK, 1 row affected (0.0090 sec)
+ MySQL  localhost:3306 ssl  SQL > use keyd9;
+Default schema set to `keyd9`.
+Fetching global names, object names from `keyd9` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  keyd9  SQL > create table advanced
+                                      -> (id int primary key,
+                                      -> name varchar(60) not null);
+Query OK, 0 rows affected (0.0587 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > create table basic
+                                      -> (roll_no int,
+                                      -> project_name varchar(255),
+                                      -> foreign key (roll_na) references advanced(id));
+ERROR: 1072 (42000): Key column 'roll_na' doesn't exist in table
+ MySQL  localhost:3306 ssl  keyd9  SQL > create table basic (roll_no int, project_name varchar(255), foreign key (roll_no) references advanced(id));
+Query OK, 0 rows affected (0.1053 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > insert into advanced values
+                                      -> (1,"salaar"),
+                                      -> (2,"bahubali"),
+                                      -> (3,"og"),
+                                      -> (4,"kgf");
+Query OK, 4 rows affected (0.0390 sec)
+
+Records: 4  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  keyd9  SQL > select * from advanced;
++----+----------+
+| id | name     |
++----+----------+
+|  1 | salaar   |
+|  2 | bahubali |
+|  3 | og       |
+|  4 | kgf      |
++----+----------+
+4 rows in set (0.0038 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > insert into basic values
+                                      -> (1,"ecommerce"),
+                                      -> (2,"banking_system"),
+                                      -> (3,"library_management"),
+                                      -> (4,"food_bank");
+Query OK, 4 rows affected (0.0313 sec)
+
+Records: 4  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  keyd9  SQL > select * from basic;
++---------+--------------------+
+| roll_no | project_name       |
++---------+--------------------+
+|       1 | ecommerce          |
+|       2 | banking_system     |
+|       3 | library_management |
+|       4 | food_bank          |
++---------+--------------------+
+4 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > insert into advanced values(1,"sahoo");
+ERROR: 1062 (23000): Duplicate entry '1' for key 'advanced.PRIMARY'
+ MySQL  localhost:3306 ssl  keyd9  SQL > desc advanced;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | NO   | PRI | NULL    |       |
+| name  | varchar(60) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+2 rows in set (0.0028 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > desc basic;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| roll_no      | int          | YES  | MUL | NULL    |       |
+| project_name | varchar(255) | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+2 rows in set (0.0027 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > create table table1(id int);
+Query OK, 0 rows affected (0.0328 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > create table table2(id int,foreign key (id) references basic (roll_no));
+Query OK, 0 rows affected (0.0816 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > select * from advanced;
++----+----------+
+| id | name     |
++----+----------+
+|  1 | salaar   |
+|  2 | bahubali |
+|  3 | og       |
+|  4 | kgf      |
++----+----------+
+4 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > select * from basic;
++---------+--------------------+
+| roll_no | project_name       |
++---------+--------------------+
+|       1 | ecommerce          |
+|       2 | banking_system     |
+|       3 | library_management |
+|       4 | food_bank          |
++---------+--------------------+
+4 rows in set (0.0028 sec)
+ MySQL  localhost:3306 ssl  keyd9  SQL > select adv.name,adv.id,basic.project_name from advanced as adv inner join basic on adv.id=basic.roll_no;
++----------+----+--------------------+
+| name     | id | project_name       |
++----------+----+--------------------+
+| salaar   |  1 | ecommerce          |
+| bahubali |  2 | banking_system     |
+| og       |  3 | library_management |
+| kgf      |  4 | food_bank          |
