@@ -1,0 +1,88 @@
+
+ MySQL  localhost:3306 ssl  tv  SQL > show tables;
+Empty set (0.0048 sec)
+ MySQL  localhost:3306 ssl  tv  SQL > create table cartoon
+                                   -> (channel varchar (10),
+                                   -> cartoon_name varchar (20),
+                                   -> rating int,
+                                   -> channel_no int);
+Query OK, 0 rows affected (0.0593 sec)
+ MySQL  localhost:3306 ssl  tv  SQL > show tables;
++--------------+
+| Tables_in_tv |
++--------------+
+| cartoon      |
++--------------+
+1 row in set (0.0035 sec)
+ MySQL  localhost:3306 ssl  tv  SQL > desc cartoon;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| channel      | varchar(10) | YES  |     | NULL    |       |
+| cartoon_name | varchar(20) | YES  |     | NULL    |       |
+| rating       | int         | YES  |     | NULL    |       |
+| channel_no   | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.0050 sec)
+ MySQL  localhost:3306 ssl  tv  SQL > insert into cartoons values
+                                   -> ("kushi","dora",8,59);
+ERROR: 1146 (42S02): Table 'tv.cartoons' doesn't exist
+ MySQL  localhost:3306 ssl  tv  SQL > insert into cartoon values ("kushi","dora",8,59);
+Query OK, 1 row affected (0.0269 sec)
+ MySQL  localhost:3306 ssl  tv  SQL > select * from cartoon;
++---------+--------------+--------+------------+
+| channel | cartoon_name | rating | channel_no |
++---------+--------------+--------+------------+
+| kushi   | dora         |      8 |         59 |
++---------+--------------+--------+------------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  tv  SQL > insert into cartoon values
+                                   -> ("disney","doremon",9,99),
+                                   -> ("avengers","marvelhq",7,68);
+Query OK, 2 rows affected (0.0265 sec)
+
+Records: 2  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tv  SQL > insert into cartoon (channel,chaneel_no) values ("cn",8),
+                                   -> ("cn",99);
+ERROR: 1054 (42S22): Unknown column 'chaneel_no' in 'field list'
+ MySQL  localhost:3306 ssl  tv  SQL > insert into cartoon (channel,channel_no) values ("cn",8), ("cn",99);
+Query OK, 2 rows affected (0.0272 sec)
+
+Records: 2  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tv  SQL > select * from cartoon;
++----------+--------------+--------+------------+
+| channel  | cartoon_name | rating | channel_no |
++----------+--------------+--------+------------+
+| kushi    | dora         |      8 |         59 |
+| disney   | doremon      |      9 |         99 |
+| avengers | marvelhq     |      7 |         68 |
+| cn       | NULL         |   NULL |          8 |
+| cn       | NULL         |   NULL |         99 |
++----------+--------------+--------+------------+
+5 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  tv  SQL > update cartoon set channel="marvel" where cartoon_name="avengers";
+Query OK, 0 rows affected (0.0026 sec)
+
+Rows matched: 0  Changed: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  tv  SQL > desc cartoon;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| channel      | varchar(10) | YES  |     | NULL    |       |
+| cartoon_name | varchar(20) | YES  |     | NULL    |       |
+| rating       | int         | YES  |     | NULL    |       |
+| channel_no   | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+4 rows in set (0.0029 sec)
+ MySQL  localhost:3306 ssl  tv  SQL > select * from cartoon;
++----------+--------------+--------+------------+
+| channel  | cartoon_name | rating | channel_no |
++----------+--------------+--------+------------+
+| kushi    | dora         |      8 |         59 |
+| disney   | doremon      |      9 |         99 |
+| avengers | marvelhq     |      7 |         68 |
+| cn       | NULL         |   NULL |          8 |
+| cn       | NULL         |   NULL |         99 |
++----------+--------------+--------+------------+
+5 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  tv  SQL >
