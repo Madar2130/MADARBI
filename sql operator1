@@ -1,0 +1,309 @@
+10 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  SQL > use operators;
+Default schema set to `operators`.
+Fetching global names, object names from `operators` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  operators  SQL > select name,(python_marks + sql_marks) % 2 from students_report;
++----------+--------------------------------+
+| name     | (python_marks + sql_marks) % 2 |
++----------+--------------------------------+
+| lion     |                              1 |
+| tiger    |                              1 |
+| dinosour |                              1 |
+| giraffe  |                              1 |
+| rabbit   |                              0 |
++----------+--------------------------------+
+5 rows in set (0.0080 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > update students_report set python_marks = python_marks + 10
+                                          -> where name = "rabbit";
+Query OK, 1 row affected (0.0307 sec)
+
+Rows matched: 1  Changed: 1  Warnings: 0
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  4 | giraffe  |           93 |        10 |
+|  5 | rabbit   |           17 |        25 |
++----+----------+--------------+-----------+
+5 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_reports
+                                          -> where python_marks>50 and sql_marks<50;
+ERROR: 1146 (42S02): Table 'operators.students_reports' doesn't exist
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report where python_marks > 50 and sql_marks < 50;
++----+---------+--------------+-----------+
+| id | name    | python_marks | sql_marks |
++----+---------+--------------+-----------+
+|  4 | giraffe |           93 |        10 |
++----+---------+--------------+-----------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where python_marks < 50 or sql_marks > 50;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  5 | rabbit   |           17 |        25 |
++----+----------+--------------+-----------+
+4 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  4 | giraffe  |           93 |        10 |
+|  5 | rabbit   |           17 |        25 |
++----+----------+--------------+-----------+
+5 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where sql_marks > = 25 or python_marks < 20;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 25 or python_marks < 20' at line 2
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report where sql_marks >= 25 or python_marks < 20;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  5 | rabbit   |           17 |        25 |
++----+----------+--------------+-----------+
+4 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where sql_marks >=25;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  5 | rabbit   |           17 |        25 |
++----+----------+--------------+-----------+
+4 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  4 | giraffe  |           93 |        10 |
+|  5 | rabbit   |           17 |        25 |
++----+----------+--------------+-----------+
+5 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where not sql_marks = 50;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  4 | giraffe  |           93 |        10 |
+|  5 | rabbit   |           17 |        25 |
++----+----------+--------------+-----------+
+5 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where not sql_marks = 30;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  4 | giraffe  |           93 |        10 |
+|  5 | rabbit   |           17 |        25 |
++----+----------+--------------+-----------+
+5 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > insert into students_report values
+                                          -> (6,"peacock",null,55),
+                                          -> (null,"sparrow",55,null);
+Query OK, 2 rows affected (0.0266 sec)
+
+Records: 2  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where id is null;
++------+---------+--------------+-----------+
+| id   | name    | python_marks | sql_marks |
++------+---------+--------------+-----------+
+| NULL | sparrow |           55 |      NULL |
++------+---------+--------------+-----------+
+1 row in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where python_marks is null;
++----+---------+--------------+-----------+
+| id | name    | python_marks | sql_marks |
++----+---------+--------------+-----------+
+|  6 | peacock |         NULL |        55 |
++----+---------+--------------+-----------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where name is null;
+Empty set (0.0008 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where id is not null and python_marks is not null;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  4 | giraffe  |           93 |        10 |
+|  5 | rabbit   |           17 |        25 |
++----+----------+--------------+-----------+
+5 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where name like "g%";
++----+---------+--------------+-----------+
+| id | name    | python_marks | sql_marks |
++----+---------+--------------+-----------+
+|  4 | giraffe |           93 |        10 |
++----+---------+--------------+-----------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where name like "p%k";
++----+---------+--------------+-----------+
+| id | name    | python_marks | sql_marks |
++----+---------+--------------+-----------+
+|  6 | peacock |         NULL |        55 |
++----+---------+--------------+-----------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where name like "%ab%";
++----+--------+--------------+-----------+
+| id | name   | python_marks | sql_marks |
++----+--------+--------------+-----------+
+|  5 | rabbit |           17 |        25 |
++----+--------+--------------+-----------+
+1 row in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where name like "a%" or "e%" or "i%" or "o%" or "u%";
+Empty set, 4 warnings (0.0013 sec)
+Warning (code 1292): Truncated incorrect DOUBLE value: 'e%'
+Warning (code 1292): Truncated incorrect DOUBLE value: 'i%'
+Warning (code 1292): Truncated incorrect DOUBLE value: 'o%'
+Warning (code 1292): Truncated incorrect DOUBLE value: 'u%'
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where name like "______";
++----+--------+--------------+-----------+
+| id | name   | python_marks | sql_marks |
++----+--------+--------------+-----------+
+|  5 | rabbit |           17 |        25 |
++----+--------+--------------+-----------+
+1 row in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report where name  not like "______";
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+6 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report where name  not like "%ab%";
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+6 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where sql_marks between 25 and 50;
++----+--------+--------------+-----------+
+| id | name   | python_marks | sql_marks |
++----+--------+--------------+-----------+
+|  5 | rabbit |           17 |        25 |
++----+--------+--------------+-----------+
+1 row in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where sql_marks between 10 and 25 and python_marks between 50 and 80;
+Empty set (0.0009 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where sql_marks not  between 20 and 50;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  4 | giraffe  |           93 |        10 |
+|  6 | peacock  |         NULL |        55 |
++----+----------+--------------+-----------+
+5 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report where sql_marks not  between 20 and 50;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  4 | giraffe  |           93 |        10 |
+|  6 | peacock  |         NULL |        55 |
++----+----------+--------------+-----------+
+5 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    5 | rabbit   |           17 |        25 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+7 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select python_marks,sql_marks from students_report
+                                          -> where name in ("rabbit","sparrow");
++--------------+-----------+
+| python_marks | sql_marks |
++--------------+-----------+
+|           17 |        25 |
+|           55 |      NULL |
++--------------+-----------+
+2 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select python_marks,sql_marks from students_report where name  not in ("rabbit","sparrow");
++--------------+-----------+
+| python_marks | sql_marks |
++--------------+-----------+
+|          100 |        67 |
+|          105 |        98 |
+|           93 |        78 |
+|           93 |        10 |
+|         NULL |        55 |
++--------------+-----------+
+5 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report
+                                          -> where sql_marks in (55,78);
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  3 | dinosour |           93 |        78 |
+|  6 | peacock  |         NULL |        55 |
++----+----------+--------------+-----------+
+2 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report where sql_marks  not in (55,78);
++----+---------+--------------+-----------+
+| id | name    | python_marks | sql_marks |
++----+---------+--------------+-----------+
+|  1 | lion    |          100 |        67 |
+|  2 | tiger   |          105 |        98 |
+|  4 | giraffe |           93 |        10 |
+|  5 | rabbit  |           17 |        25 |
++----+---------+--------------+-----------+
+4 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  operators  SQL >
