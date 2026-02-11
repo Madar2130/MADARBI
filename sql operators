@@ -1,0 +1,133 @@
+
+ MySQL  localhost:3306 ssl  operators  SQL > create table students_report
+                                          -> (id int unique,name varchar(30) notb null,
+                                          -> python_marks int,
+                                          -> sql_marks int;
+
+ MySQL  localhost:3306 ssl  operators  SQL > create table students_report (id int unique,name varchar(30) not null, python_marks int, sql_marks int);
+Query OK, 0 rows affected (0.0964 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > insert into students_report values
+                                          -> (1,"lion",95,67),
+                                          -> (2,"tiger",100,98),
+                                          -> (3,"dinosour",88,78),
+                                          -> (4,"giraffe",88,10),
+                                          -> (5,"rabbit",2,25);
+Query OK, 5 rows affected (0.0376 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |           95 |        67 |
+|  2 | tiger    |          100 |        98 |
+|  3 | dinosour |           88 |        78 |
+|  4 | giraffe  |           88 |        10 |
+|  5 | rabbit   |            2 |        25 |
++----+----------+--------------+-----------+
+5 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select name python_marks+sql_marks as total_marks from students_report;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+sql_marks as total_marks from students_report' at line 1
+ MySQL  localhost:3306 ssl  operators  SQL > select name python_marks + sql_marks as total_marks from students_report;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+ sql_marks as total_marks from students_report' at line 1
+ MySQL  localhost:3306 ssl  operators  SQL > select name python_marks+sql_marks as total_marks from students_report;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+sql_marks as total_marks from students_report' at line 1
+ MySQL  localhost:3306 ssl  operators  SQL > select name python_marks+ sql_marks as total_marks from students_report;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+ sql_marks as total_marks from students_report' at line 1
+ MySQL  localhost:3306 ssl  operators  SQL > select name, python_marks + sql_marks as total_marks from students_report;
++----------+-------------+
+| name     | total_marks |
++----------+-------------+
+| lion     |         162 |
+| tiger    |         198 |
+| dinosour |         166 |
+| giraffe  |          98 |
+| rabbit   |          27 |
++----------+-------------+
+5 rows in set (0.0230 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select name,python_marks+sql_marks from students_report;
++----------+------------------------+
+| name     | python_marks+sql_marks |
++----------+------------------------+
+| lion     |                    162 |
+| tiger    |                    198 |
+| dinosour |                    166 |
+| giraffe  |                     98 |
+| rabbit   |                     27 |
++----------+------------------------+
+5 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select name sql_marks+5 as increment from students_report;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+5 as increment from students_report' at line 1
+ MySQL  localhost:3306 ssl  operators  SQL > select name sql_marks +5 as increment from students_report;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '+5 as increment from students_report' at line 1
+ MySQL  localhost:3306 ssl  operators  SQL > select name, sql_marks +5 as increment from students_report;
++----------+-----------+
+| name     | increment |
++----------+-----------+
+| lion     |        72 |
+| tiger    |       103 |
+| dinosour |        83 |
+| giraffe  |        15 |
+| rabbit   |        30 |
++----------+-----------+
+5 rows in set (0.0361 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |           95 |        67 |
+|  2 | tiger    |          100 |        98 |
+|  3 | dinosour |           88 |        78 |
+|  4 | giraffe  |           88 |        10 |
+|  5 | rabbit   |            2 |        25 |
++----+----------+--------------+-----------+
+5 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > update students_report set python_marks = python_marks + 5;
+Query OK, 5 rows affected (0.0421 sec)
+
+Rows matched: 5  Changed: 5  Warnings: 0
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++----+----------+--------------+-----------+
+| id | name     | python_marks | sql_marks |
++----+----------+--------------+-----------+
+|  1 | lion     |          100 |        67 |
+|  2 | tiger    |          105 |        98 |
+|  3 | dinosour |           93 |        78 |
+|  4 | giraffe  |           93 |        10 |
+|  5 | rabbit   |            7 |        25 |
++----+----------+--------------+-----------+
+5 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select name,python_marks - sql_marks as difference from students_report;
++----------+------------+
+| name     | difference |
++----------+------------+
+| lion     |         33 |
+| tiger    |          7 |
+| dinosour |         15 |
+| giraffe  |         83 |
+| rabbit   |        -18 |
++----------+------------+
+5 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select name,(python_marks + sql_marks) * 2 from students_report;
++----------+--------------------------------+
+| name     | (python_marks + sql_marks) * 2 |
++----------+--------------------------------+
+| lion     |                            334 |
+| tiger    |                            406 |
+| dinosour |                            342 |
+| giraffe  |                            206 |
+| rabbit   |                             64 |
++----------+--------------------------------+
+5 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select name,(python_marks + sql_marks) / 2 from students_report;
++----------+--------------------------------+
+| name     | (python_marks + sql_marks) / 2 |
++----------+--------------------------------+
+| lion     |                        83.5000 |
+| tiger    |                       101.5000 |
+| dinosour |                        85.5000 |
+| giraffe  |                        51.5000 |
+| rabbit   |                        16.0000 |
++----------+--------------------------------+
+5 rows in set (0.0029 sec)
+ MySQL  localhost:3306 ssl  operators  SQL >
