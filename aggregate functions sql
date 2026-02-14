@@ -1,0 +1,218 @@
+SQL > show tables;
+Empty set (0.0028 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| d9                 |
+| d9r                |
+| emp                |
+| employees          |
+| information_schema |
+| keyd9              |
+| mysql              |
+| operators          |
+| performance_schema |
+| restaurant         |
+| sys                |
+| tv                 |
++--------------------+
+12 rows in set (0.0026 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > use operators;
+Default schema set to `operators`.
+Fetching global names, object names from `operators` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  operators  SQL > show tables;
++---------------------+
+| Tables_in_operators |
++---------------------+
+| students_report     |
++---------------------+
+1 row in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    5 | rabbit   |           17 |        25 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+7 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select sum(python_marks) from students_report;
++-------------------+
+| sum(python_marks) |
++-------------------+
+|               463 |
++-------------------+
+1 row in set (0.0246 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select min(python_marks) from students_report;
++-------------------+
+| min(python_marks) |
++-------------------+
+|                17 |
++-------------------+
+1 row in set (0.0037 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select max(python_marks) from students_report;
++-------------------+
+| max(python_marks) |
++-------------------+
+|               105 |
++-------------------+
+1 row in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    5 | rabbit   |           17 |        25 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+7 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select min(python_marks),max(python_marks) from students_report;
++-------------------+-------------------+
+| min(python_marks) | max(python_marks) |
++-------------------+-------------------+
+|                17 |               105 |
++-------------------+-------------------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    5 | rabbit   |           17 |        25 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+7 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select min(python_marks) + max(python_marks) from students_report;
++---------------------------------------+
+| min(python_marks) + max(python_marks) |
++---------------------------------------+
+|                                   122 |
++---------------------------------------+
+1 row in set (0.0255 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select max(python_marks),max(sql_marks) from students_report;
++-------------------+----------------+
+| max(python_marks) | max(sql_marks) |
++-------------------+----------------+
+|               105 |             98 |
++-------------------+----------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    5 | rabbit   |           17 |        25 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+7 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select max (python_marks) + max(python_marks) from students_report;
+ERROR: 1630 (42000): FUNCTION operators.max does not exist. Check the 'Function Name Parsing and Resolution' section in the Reference Manual
+ MySQL  localhost:3306 ssl  operators  SQL > select max(python_marks) + max(python_marks) from students_report;
++---------------------------------------+
+| max(python_marks) + max(python_marks) |
++---------------------------------------+
+|                                   210 |
++---------------------------------------+
+1 row in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select min(python_marks), max(python_marks);
+ERROR: 1054 (42S22): Unknown column 'python_marks' in 'field list'
+ MySQL  localhost:3306 ssl  operators  SQL > select min(python_marks), max(python_marks),
+                                          -> min(sql_marks), max(sql_marks) from students_report;
++-------------------+-------------------+----------------+----------------+
+| min(python_marks) | max(python_marks) | min(sql_marks) | max(sql_marks) |
++-------------------+-------------------+----------------+----------------+
+|                17 |               105 |             10 |             98 |
++-------------------+-------------------+----------------+----------------+
+1 row in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    5 | rabbit   |           17 |        25 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+7 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select avg(sql_marks) from students_report;
++----------------+
+| avg(sql_marks) |
++----------------+
+|        55.5000 |
++----------------+
+1 row in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select count(*) from students_report;
++----------+
+| count(*) |
++----------+
+|        7 |
++----------+
+1 row in set (0.0237 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    5 | rabbit   |           17 |        25 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+7 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select count(id) from students_report;
++-----------+
+| count(id) |
++-----------+
+|         6 |
++-----------+
+1 row in set (0.0231 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select count(python_marks) from students_report;
++---------------------+
+| count(python_marks) |
++---------------------+
+|                   6 |
++---------------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select count(python_marks) from students_report
+                                          -> where python_marks between 50 and 90;
++---------------------+
+| count(python_marks) |
++---------------------+
+|                   1 |
++---------------------+
+1 row in set (0.0236 sec)
+ MySQL  localhost:3306 ssl  operators  SQL > select * from students_report;
++------+----------+--------------+-----------+
+| id   | name     | python_marks | sql_marks |
++------+----------+--------------+-----------+
+|    1 | lion     |          100 |        67 |
+|    2 | tiger    |          105 |        98 |
+|    3 | dinosour |           93 |        78 |
+|    4 | giraffe  |           93 |        10 |
+|    5 | rabbit   |           17 |        25 |
+|    6 | peacock  |         NULL |        55 |
+| NULL | sparrow  |           55 |      NULL |
++------+----------+--------------+-----------+
+7 rows in set (0.0011 sec)
