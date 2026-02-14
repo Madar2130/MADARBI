@@ -1,0 +1,154 @@
+alhost:3306 ssl  food_items  SQL > create table food_items
+                                           -> (id int primary key auto_increment,
+                                           -> item_name varchar(50),
+                                           -> price int,
+                                           -> quantity int);
+Query OK, 0 rows affected (0.0470 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select * from food_items;
+Empty set (0.0030 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > desc food_items;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| item_name | varchar(50) | YES  |     | NULL    |                |
+| price     | int         | YES  |     | NULL    |                |
+| quantity  | int         | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0038 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > insert into food_items (item_name,price,quantity) values ('burger',120,10),
+                                           -> ('pizza',250,5),
+                                           -> ('sandwich',80,20),
+                                           -> ('pasta',200,8),
+                                           -> ('juice',null,15);
+Query OK, 5 rows affected (0.0117 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  food_items  SQL > desc food_items;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| id        | int         | NO   | PRI | NULL    | auto_increment |
+| item_name | varchar(50) | YES  |     | NULL    |                |
+| price     | int         | YES  |     | NULL    |                |
+| quantity  | int         | YES  |     | NULL    |                |
++-----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.0040 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select * from food_items;
++----+-----------+-------+----------+
+| id | item_name | price | quantity |
++----+-----------+-------+----------+
+|  1 | burger    |   120 |       10 |
+|  2 | pizza     |   250 |        5 |
+|  3 | sandwich  |    80 |       20 |
+|  4 | pasta     |   200 |        8 |
+|  5 | juice     |  NULL |       15 |
++----+-----------+-------+----------+
+5 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select count(*) from food_items;
++----------+
+| count(*) |
++----------+
+|        5 |
++----------+
+1 row in set (0.0044 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select sum(price) from food_items;
++------------+
+| sum(price) |
++------------+
+|        650 |
++------------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select avg(price) from food_items;
++------------+
+| avg(price) |
++------------+
+|   162.5000 |
++------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select avg(price) as average_price from food_items;
++---------------+
+| average_price |
++---------------+
+|      162.5000 |
++---------------+
+1 row in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select max(price) as highest_price from food_items;
++---------------+
+| highest_price |
++---------------+
+|           250 |
++---------------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select min(price) as lowset_price from food_items;
++--------------+
+| lowset_price |
++--------------+
+|           80 |
++--------------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select sum(quantity) as total_quantity from food_items;
++----------------+
+| total_quantity |
++----------------+
+|             58 |
++----------------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select count(price) as price_count from food_items;
++-------------+
+| price_count |
++-------------+
+|           4 |
++-------------+
+1 row in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select * from food_items;
++----+-----------+-------+----------+
+| id | item_name | price | quantity |
++----+-----------+-------+----------+
+|  1 | burger    |   120 |       10 |
+|  2 | pizza     |   250 |        5 |
+|  3 | sandwich  |    80 |       20 |
+|  4 | pasta     |   200 |        8 |
+|  5 | juice     |  NULL |       15 |
++----+-----------+-------+----------+
+5 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select sum(price * quantity) as total_amount from food_items;
++--------------+
+| total_amount |
++--------------+
+|         5650 |
++--------------+
+1 row in set (0.0031 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select * fro food_items;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fro food_items' at line 1
+ MySQL  localhost:3306 ssl  food_items  SQL > select * from food_items;
++----+-----------+-------+----------+
+| id | item_name | price | quantity |
++----+-----------+-------+----------+
+|  1 | burger    |   120 |       10 |
+|  2 | pizza     |   250 |        5 |
+|  3 | sandwich  |    80 |       20 |
+|  4 | pasta     |   200 |        8 |
+|  5 | juice     |  NULL |       15 |
++----+-----------+-------+----------+
+5 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL > select count(price) as total_prices from food_items;
++--------------+
+| total_prices |
++--------------+
+|            4 |
++--------------+
+1 row in set (0.0013 sec)
+ 
+ MySQL  localhost:3306 ssl  food_items  SQL > select * from food_items;
++----+-----------+-------+----------+
+| id | item_name | price | quantity |
++----+-----------+-------+----------+
+|  1 | burger    |   120 |       10 |
+|  2 | pizza     |   250 |        5 |
+|  3 | sandwich  |    80 |       20 |
+|  4 | pasta     |   200 |        8 |
+|  5 | juice     |  NULL |       15 |
++----+-----------+-------+----------+
+5 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  food_items  SQL >
