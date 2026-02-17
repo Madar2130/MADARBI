@@ -1,0 +1,207 @@
+mployees  SQL > create database employees;
+Query OK, 1 row affected (0.0111 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > use employees;
+Default schema set to `employees`.
+Fetching global names, object names from `employees` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  employees  SQL > create table employees;
+ERROR: 4028 (HY000): A table must have at least one visible column.
+ MySQL  localhost:3306 ssl  employees  SQL > create table employees
+                                          -> (emp_id int primary key,
+                                          -> name varchar(50),
+                                          -> salary int,
+                                          -> department varchar(60));
+Query OK, 0 rows affected (0.0889 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > desc employees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int         | NO   | PRI | NULL    |       |
+| name       | varchar(50) | YES  |     | NULL    |       |
+| salary     | int         | YES  |     | NULL    |       |
+| department | varchar(60) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.0204 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > alter table employees
+                                          -> add email varchar(100);
+Query OK, 0 rows affected (0.1100 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  employees  SQL > desc employees;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| emp_id     | int          | NO   | PRI | NULL    |       |
+| name       | varchar(50)  | YES  |     | NULL    |       |
+| salary     | int          | YES  |     | NULL    |       |
+| department | varchar(60)  | YES  |     | NULL    |       |
+| email      | varchar(100) | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+5 rows in set (0.0255 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > drop column email;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'column email' at line 1
+ MySQL  localhost:3306 ssl  employees  SQL > alter table employees
+                                          -> drop column email;
+Query OK, 0 rows affected (0.0773 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  employees  SQL > desc employees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int         | NO   | PRI | NULL    |       |
+| name       | varchar(50) | YES  |     | NULL    |       |
+| salary     | int         | YES  |     | NULL    |       |
+| department | varchar(60) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.0028 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > drop table employees;
+Query OK, 0 rows affected (0.0430 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > desc employees;
+ERROR: 1146 (42S02): Table 'employees.employees' doesn't exist
+ MySQL  localhost:3306 ssl  employees  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| clauses            |
+| d9                 |
+| d9r                |
+| emp                |
+| employees          |
+| food_items         |
+| food_names         |
+| information_schema |
+| keyd9              |
+| mysql              |
+| operators          |
+| performance_schema |
+| restaurant         |
+| sales              |
+| sys                |
+| tv                 |
++--------------------+
+16 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > drop database employees;
+Query OK, 0 rows affected (0.0295 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| clauses            |
+| d9                 |
+| d9r                |
+| emp                |
+| food_items         |
+| food_names         |
+| information_schema |
+| keyd9              |
+| mysql              |
+| operators          |
+| performance_schema |
+| restaurant         |
+| sales              |
+| sys                |
+| tv                 |
++--------------------+
+15 rows in set (0.0020 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > create database employees;
+Query OK, 1 row affected (0.0295 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > use employees;
+Default schema set to `employees`.
+Fetching global names, object names from `employees` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  employees  SQL > create table employees;
+ERROR: 4028 (HY000): A table must have at least one visible column.
+ MySQL  localhost:3306 ssl  employees  SQL > create table employees
+                                          -> (emp_id int,name varchar(50),salary int,department varchar(60));
+Query OK, 0 rows affected (0.0547 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > desc employees;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| emp_id     | int         | YES  |     | NULL    |       |
+| name       | varchar(50) | YES  |     | NULL    |       |
+| salary     | int         | YES  |     | NULL    |       |
+| department | varchar(60) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.0263 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > insert into employees
+                                          -> values (1,'john',30000,'hr'),
+                                          -> (2,'jane',55000,'it'),
+                                          -> (3,'priya',18000,'finance'),
+                                          -> (4,'akhil',45000,'it'),
+                                          -> (5,'meena',60000,'hr');
+Query OK, 5 rows affected (0.0290 sec)
+
+Records: 5  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  employees  SQL > select * feom employees;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'feom employees' at line 1
+ MySQL  localhost:3306 ssl  employees  SQL > select * from employees;
++--------+-------+--------+------------+
+| emp_id | name  | salary | department |
++--------+-------+--------+------------+
+|      1 | john  |  30000 | hr         |
+|      2 | jane  |  55000 | it         |
+|      3 | priya |  18000 | finance    |
+|      4 | akhil |  45000 | it         |
+|      5 | meena |  60000 | hr         |
++--------+-------+--------+------------+
+5 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > update employees
+                                          -> set salary = salary * 1.10
+                                          -> where department = 'hr' ;
+Query OK, 2 rows affected (0.0059 sec)
+
+Rows matched: 2  Changed: 2  Warnings: 0
+ MySQL  localhost:3306 ssl  employees  SQL > select * from employees;
++--------+-------+--------+------------+
+| emp_id | name  | salary | department |
++--------+-------+--------+------------+
+|      1 | john  |  33000 | hr         |
+|      2 | jane  |  55000 | it         |
+|      3 | priya |  18000 | finance    |
+|      4 | akhil |  45000 | it         |
+|      5 | meena |  66000 | hr         |
++--------+-------+--------+------------+
+5 rows in set (0.0009 sec)
+ 
+ MySQL  localhost:3306 ssl  employees  SQL > delete from employees
+                                          -> where salary < 20000;
+Query OK, 0 rows affected (0.0009 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > select * from employees;
++--------+-------+--------+------------+
+| emp_id | name  | salary | department |
++--------+-------+--------+------------+
+|      1 | john  |  33000 | hr         |
+|      2 | jane  |  55000 | it         |
+|      4 | akhil |  45000 | it         |
+|      5 | meena |  66000 | hr         |
++--------+-------+--------+------------+
+4 rows in set (0.0232 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > select * from employees
+                                          -> where salary > 50000;
++--------+-------+--------+------------+
+| emp_id | name  | salary | department |
++--------+-------+--------+------------+
+|      2 | jane  |  55000 | it         |
+|      5 | meena |  66000 | hr         |
++--------+-------+--------+------------+
+2 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > select * from employees
+                                          -> where department = 'it' and salary > 40000;
++--------+-------+--------+------------+
+| emp_id | name  | salary | department |
++--------+-------+--------+------------+
+|      2 | jane  |  55000 | it         |
+|      4 | akhil |  45000 | it         |
++--------+-------+--------+------------+
+2 rows in set (0.0019 sec)
+ MySQL  localhost:3306 ssl  employees  SQL > select * from employees;
++--------+-------+--------+------------+
+| emp_id | name  | salary | department |
++--------+-------+--------+------------+
+|      1 | john  |  33000 | hr         |
+|      2 | jane  |  55000 | it         |
+|      4 | akhil |  45000 | it         |
+|      5 | meena |  66000 | hr         |
++--------+-------+--------+------------+
+4 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  employees  SQL >
