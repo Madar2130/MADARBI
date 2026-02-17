@@ -1,0 +1,26 @@
+
+
+
+
+# def sum(n):
+#     if n ==0:
+#         return 0
+#     else:
+#         return n + sum(n-1)
+    
+# n = int(input("enter a number:"))
+# result = sum(n)
+# print("sum =",result)
+
+
+
+n = int(input("enter number of terms:"))
+a = 0
+b= 1
+ 
+print("fibonacci series:")
+for i in range(n):
+    print(a ,end=' ')
+    c = a  + b
+    a = b
+    b = c
