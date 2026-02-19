@@ -1,0 +1,163 @@
+
+ MySQL  localhost:3306 ssl  SQL > create database joins;
+Query OK, 1 row affected (0.0227 sec)
+ MySQL  localhost:3306 ssl  SQL > use joins;
+Default schema set to `joins`.
+Fetching global names, object names from `joins` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  joins  SQL > create table student1
+                                      -> (id int,name varchar(30));
+Query OK, 0 rows affected (0.0551 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > create table student2
+                                      -> (id int,name varchar
+                                      -> (40),passed_out int);
+Query OK, 0 rows affected (0.0332 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > insert into student1 values
+                                      -> (101,"stranger_things"),
+                                      -> (102,"game_of_thorns"),
+                                      -> (103,"mirzapur"),
+                                      -> (104,"dark");
+Query OK, 4 rows affected (0.0124 sec)
+
+Records: 4  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  joins  SQL > select * from student1;
++-----+-----------------+
+| id  | name            |
++-----+-----------------+
+| 101 | stranger_things |
+| 102 | game_of_thorns  |
+| 103 | mirzapur        |
+| 104 | dark            |
++-----+-----------------+
+4 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > insert into student2 values
+                                      -> (101,"paradise",2000),
+                                      -> (102,"a_aa",2025),
+                                      -> (103,"salaar",2024),
+                                      -> (104,"dark",2020),
+                                      -> (105,"svsc",2014),
+                                      -> (106,"eega",2012),
+                                      -> (017,"mirzapur",1999);
+Query OK, 7 rows affected (0.0095 sec)
+
+Records: 7  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  joins  SQL > select * from student1;
++-----+-----------------+
+| id  | name            |
++-----+-----------------+
+| 101 | stranger_things |
+| 102 | game_of_thorns  |
+| 103 | mirzapur        |
+| 104 | dark            |
++-----+-----------------+
+4 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select * from student2;
++-----+----------+------------+
+| id  | name     | passed_out |
++-----+----------+------------+
+| 101 | paradise |       2000 |
+| 102 | a_aa     |       2025 |
+| 103 | salaar   |       2024 |
+| 104 | dark     |       2020 |
+| 105 | svsc     |       2014 |
+| 106 | eega     |       2012 |
+|  17 | mirzapur |       1999 |
++-----+----------+------------+
+7 rows in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.id,s1.name,s2.passed_out from student1 as s1;
+ERROR: 1054 (42S22): Unknown column 's2.passed_out' in 'field list'
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.id,s1.name,s2.passed_out from student1 as s1 inner join student2 as s2 on s1.id=s2.id;
++-----+-----------------+------------+
+| id  | name            | passed_out |
++-----+-----------------+------------+
+| 101 | stranger_things |       2000 |
+| 102 | game_of_thorns  |       2025 |
+| 103 | mirzapur        |       2024 |
+| 104 | dark            |       2020 |
++-----+-----------------+------------+
+4 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.id,s1.name,s2.passed_out from student1 as s1
+                                      -> inner join student2 as s2 on
+                                      -> s1.name=s2.name;
++-----+----------+------------+
+| id  | name     | passed_out |
++-----+----------+------------+
+| 104 | dark     |       2020 |
+| 103 | mirzapur |       1999 |
++-----+----------+------------+
+2 rows in set (0.0018 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.name,s1.id,s2.name from student2 as s2 right join student1 as s1 on s1.id=s2.id;
++-----------------+-----+----------+
+| name            | id  | name     |
++-----------------+-----+----------+
+| stranger_things | 101 | paradise |
+| game_of_thorns  | 102 | a_aa     |
+| mirzapur        | 103 | salaar   |
+| dark            | 104 | dark     |
++-----------------+-----+----------+
+4 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.name,s1.id,s2.name from student1 as s2 right join student2 as s2 on s1.id=s2.id;
+ERROR: 1066 (42000): Not unique table/alias: 's2'
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.name,s1.id,s2.name from student1 as s2 right join student2 as s1 on s1.id=s2.id;
++----------+-----+-----------------+
+| name     | id  | name            |
++----------+-----+-----------------+
+| paradise | 101 | stranger_things |
+| a_aa     | 102 | game_of_thorns  |
+| salaar   | 103 | mirzapur        |
+| dark     | 104 | dark            |
+| svsc     | 105 | NULL            |
+| eega     | 106 | NULL            |
+| mirzapur |  17 | NULL            |
++----------+-----+-----------------+
+7 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.name,s1.id,s2.name from student1 as s1 right join student2 as s2 on s1.id=s2.id;
++-----------------+------+----------+
+| name            | id   | name     |
++-----------------+------+----------+
+| stranger_things |  101 | paradise |
+| game_of_thorns  |  102 | a_aa     |
+| mirzapur        |  103 | salaar   |
+| dark            |  104 | dark     |
+| NULL            | NULL | svsc     |
+| NULL            | NULL | eega     |
+| NULL            | NULL | mirzapur |
++-----------------+------+----------+
+7 rows in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select * from student2;
++-----+----------+------------+
+| id  | name     | passed_out |
++-----+----------+------------+
+| 101 | paradise |       2000 |
+| 102 | a_aa     |       2025 |
+| 103 | salaar   |       2024 |
+| 104 | dark     |       2020 |
+| 105 | svsc     |       2014 |
+| 106 | eega     |       2012 |
+|  17 | mirzapur |       1999 |
++-----+----------+------------+
+7 rows in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select student1.mame,student2.id,student2.passed_out from student1 right join student2 on student1.id=student2.id;
+ERROR: 1054 (42S22): Unknown column 'student1.mame' in 'field list'
+ MySQL  localhost:3306 ssl  joins  SQL > select student1.name,student2.id,student2.passed_out from student1 right join student2 on student1.id=student2.id;
++-----------------+-----+------------+
+| name            | id  | passed_out |
++-----------------+-----+------------+
+| stranger_things | 101 |       2000 |
+| game_of_thorns  | 102 |       2025 |
+| mirzapur        | 103 |       2024 |
+| dark            | 104 |       2020 |
+| NULL            | 105 |       2014 |
+| NULL            | 106 |       2012 |
+| NULL            |  17 |       1999 |
++-----------------+-----+------------+
+7 rows in set (0.0016 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select student1.name,student2.id,student2.passed_out from student1 left join student2 on student1.id=student2.id;
++-----------------+-----+------------+
+| name            | id  | passed_out |
++-----------------+-----+------------+
+| stranger_things | 101 |       2000 |
+| game_of_thorns  | 102 |       2025 |
+| mirzapur        | 103 |       2024 |
+| dark            | 104 |       2020 |
++-----------------+-----+------------+
+4 rows in set (0.0012 sec)
