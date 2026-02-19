@@ -1,0 +1,40 @@
+
+
+# def sample():
+#     print("hello i am sample function ")
+
+# sample()
+# sample()
+# sample()
+
+# def sample(name,city):
+#     print(name,city)
+# sample('kiran','hyd')
+# sample('harish','nrl')    
+
+
+
+# def greetings (name,city):
+#     print(f"{name} is from {city}")
+
+# greetings('harish','nlr')
+# greetings('kiran','guntur')
+# greetings('akhil','hyderabad')
+
+
+# def greetings(name,city):
+#     print(f"{name} is from {city}")
+# greetings('harish','nlr')
+
+
+
+
+# def function(x=25,y,z):
+#     print(x,y,z)
+# function(4,5) 
+
+
+# def student_info(name,city,institute="10000 coders"):
+#     print(f"{name} is from {city} and joined in {institute}")
+# student_info('madar','bhglr') 
+# student_info('alekhya','gnt')   
