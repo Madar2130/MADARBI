@@ -1,0 +1,207 @@
+
+ MySQL  localhost:3306 ssl  SQL > use joins;
+Default schema set to `joins`.
+Fetching global names, object names from `joins` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  joins  SQL > show tables;
++-----------------+
+| Tables_in_joins |
++-----------------+
+| student1        |
+| student2        |
++-----------------+
+2 rows in set (0.0076 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select* from student1;
++-----+-----------------+
+| id  | name            |
++-----+-----------------+
+| 101 | stranger_things |
+| 102 | game_of_thorns  |
+| 103 | mirzapur        |
+| 104 | dark            |
++-----+-----------------+
+4 rows in set (0.0121 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select * from student2;
++-----+----------+------------+
+| id  | name     | passed_out |
++-----+----------+------------+
+| 101 | paradise |       2000 |
+| 102 | a_aa     |       2025 |
+| 103 | salaar   |       2024 |
+| 104 | dark     |       2020 |
+| 105 | svsc     |       2014 |
+| 106 | eega     |       2012 |
+|  17 | mirzapur |       1999 |
++-----+----------+------------+
+7 rows in set (0.0138 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.id,s1.name from student1 as s1
+                                      -> left join student2 as s2 on
+                                      -> s1.id=s2.id
+                                      -> union
+                                      -> select s2.name,s2.passed_out from student1 as s1
+                                      -> right join student2 as s2 on s1.id=s2.id;
++----------+-----------------+
+| id       | name            |
++----------+-----------------+
+| 101      | stranger_things |
+| 102      | game_of_thorns  |
+| 103      | mirzapur        |
+| 104      | dark            |
+| paradise | 2000            |
+| a_aa     | 2025            |
+| salaar   | 2024            |
+| dark     | 2020            |
+| svsc     | 2014            |
+| eega     | 2012            |
+| mirzapur | 1999            |
++----------+-----------------+
+11 rows in set (0.0170 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.id,s1.name,s2.passed_out from student1 as s1
+                                      -> cross join student2 as s2;
++-----+-----------------+------------+
+| id  | name            | passed_out |
++-----+-----------------+------------+
+| 104 | dark            |       2000 |
+| 103 | mirzapur        |       2000 |
+| 102 | game_of_thorns  |       2000 |
+| 101 | stranger_things |       2000 |
+| 104 | dark            |       2025 |
+| 103 | mirzapur        |       2025 |
+| 102 | game_of_thorns  |       2025 |
+| 101 | stranger_things |       2025 |
+| 104 | dark            |       2024 |
+| 103 | mirzapur        |       2024 |
+| 102 | game_of_thorns  |       2024 |
+| 101 | stranger_things |       2024 |
+| 104 | dark            |       2020 |
+| 103 | mirzapur        |       2020 |
+| 102 | game_of_thorns  |       2020 |
+| 101 | stranger_things |       2020 |
+| 104 | dark            |       2014 |
+| 103 | mirzapur        |       2014 |
+| 102 | game_of_thorns  |       2014 |
+| 101 | stranger_things |       2014 |
+| 104 | dark            |       2012 |
+| 103 | mirzapur        |       2012 |
+| 102 | game_of_thorns  |       2012 |
+| 101 | stranger_things |       2012 |
+| 104 | dark            |       1999 |
+| 103 | mirzapur        |       1999 |
+| 102 | game_of_thorns  |       1999 |
+| 101 | stranger_things |       1999 |
++-----+-----------------+------------+
+28 rows in set (0.0017 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.id,s1.name,s2.passed_out from student1 as s1 cross join student2 as s2 order by id asc;
++-----+-----------------+------------+
+| id  | name            | passed_out |
++-----+-----------------+------------+
+| 101 | stranger_things |       2000 |
+| 101 | stranger_things |       2025 |
+| 101 | stranger_things |       2024 |
+| 101 | stranger_things |       2020 |
+| 101 | stranger_things |       2014 |
+| 101 | stranger_things |       2012 |
+| 101 | stranger_things |       1999 |
+| 102 | game_of_thorns  |       2000 |
+| 102 | game_of_thorns  |       2025 |
+| 102 | game_of_thorns  |       2024 |
+| 102 | game_of_thorns  |       2020 |
+| 102 | game_of_thorns  |       2014 |
+| 102 | game_of_thorns  |       2012 |
+| 102 | game_of_thorns  |       1999 |
+| 103 | mirzapur        |       2000 |
+| 103 | mirzapur        |       2025 |
+| 103 | mirzapur        |       2024 |
+| 103 | mirzapur        |       2020 |
+| 103 | mirzapur        |       2014 |
+| 103 | mirzapur        |       2012 |
+| 103 | mirzapur        |       1999 |
+| 104 | dark            |       2000 |
+| 104 | dark            |       2025 |
+| 104 | dark            |       2024 |
+| 104 | dark            |       2020 |
+| 104 | dark            |       2014 |
+| 104 | dark            |       2012 |
+| 104 | dark            |       1999 |
++-----+-----------------+------------+
+28 rows in set (0.0047 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.id,s1.name,s2.passed_out from student1 as s1 cross join student2 as s2 order by id desc;
++-----+-----------------+------------+
+| id  | name            | passed_out |
++-----+-----------------+------------+
+| 104 | dark            |       2000 |
+| 104 | dark            |       2025 |
+| 104 | dark            |       2024 |
+| 104 | dark            |       2020 |
+| 104 | dark            |       2014 |
+| 104 | dark            |       2012 |
+| 104 | dark            |       1999 |
+| 103 | mirzapur        |       2000 |
+| 103 | mirzapur        |       2025 |
+| 103 | mirzapur        |       2024 |
+| 103 | mirzapur        |       2020 |
+| 103 | mirzapur        |       2014 |
+| 103 | mirzapur        |       2012 |
+| 103 | mirzapur        |       1999 |
+| 102 | game_of_thorns  |       2000 |
+| 102 | game_of_thorns  |       2025 |
+| 102 | game_of_thorns  |       2024 |
+| 102 | game_of_thorns  |       2020 |
+| 102 | game_of_thorns  |       2014 |
+| 102 | game_of_thorns  |       2012 |
+| 102 | game_of_thorns  |       1999 |
+| 101 | stranger_things |       2000 |
+| 101 | stranger_things |       2025 |
+| 101 | stranger_things |       2024 |
+| 101 | stranger_things |       2020 |
+| 101 | stranger_things |       2014 |
+| 101 | stranger_things |       2012 |
+| 101 | stranger_things |       1999 |
++-----+-----------------+------------+
+28 rows in set (0.0234 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select * from student2;
++-----+----------+------------+
+| id  | name     | passed_out |
++-----+----------+------------+
+| 101 | paradise |       2000 |
+| 102 | a_aa     |       2025 |
+| 103 | salaar   |       2024 |
+| 104 | dark     |       2020 |
+| 105 | svsc     |       2014 |
+| 106 | eega     |       2012 |
+|  17 | mirzapur |       1999 |
++-----+----------+------------+
+7 rows in set (0.0247 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s2.id,s2.name,s2.passed_out from student2 as s2
+                                      -> join student2 as s1 on s1.id=s2.id;
++-----+----------+------------+
+| id  | name     | passed_out |
++-----+----------+------------+
+| 101 | paradise |       2000 |
+| 102 | a_aa     |       2025 |
+| 103 | salaar   |       2024 |
+| 104 | dark     |       2020 |
+| 105 | svsc     |       2014 |
+| 106 | eega     |       2012 |
+|  17 | mirzapur |       1999 |
++-----+----------+------------+
+7 rows in set (0.0413 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > insert into student2 values(103,"abc",1208);
+Query OK, 1 row affected (0.0244 sec)
+ MySQL  localhost:3306 ssl  joins  SQL > select s1.id,s2.name from student2 as s2
+                                      -> join student2 as s1 on s1.id=s2.id;
++-----+----------+
+| id  | name     |
++-----+----------+
+| 101 | paradise |
+| 102 | a_aa     |
+| 103 | abc      |
+| 103 | salaar   |
+| 104 | dark     |
+| 105 | svsc     |
+| 106 | eega     |
+|  17 | mirzapur |
+| 103 | abc      |
+| 103 | salaar   |
++-----+----------+
+10 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  joins  SQL >
