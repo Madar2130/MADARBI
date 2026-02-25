@@ -1,0 +1,55 @@
+1. by default will returns none value
+
+# def sample():
+#     print('hello')
+#     return 'something'
+# print('welcome')
+# print(sample())
+
+# def sample1():
+#     return 'hello'
+# x=sample1()
+# print(x)
+
+# def sample2():
+#     return 'i am sample2'
+# x=sample2
+# print(x())
+
+# def sample3():
+#     print('hello sample3')
+#     return 'byee'
+# y=sample3
+# print(y())
+
+
+# 2. a function definition can be take as values inside the data structures like list,tuple
+
+# def func1():
+#     print('i am function 1')
+    # def func2():
+    #     print('i am function 2')
+    #     list1 = [func1,func2]
+    #     list1[0]()
+    #     list1[1]()
+
+# def func3 ():
+#     print("i am function 3")
+#     return func2()
+# func3()
+
+# def func4():
+#     return 'i am function 4'
+# def func5():
+#     return 'i am function 5'
+# func 5 (fun 4)
+
+
+# fun5 = lambda x,y=4:x+y
+# print(fun5(8,2))
+
+# fun6 = lambda * x:x[0]+x[1]+x[2]
+# print(fun6(1,2,3))
+
+# fun7 = lambda ** x:x
+# print(fun7(first=4,second=5,third=6))
