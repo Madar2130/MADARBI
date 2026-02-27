@@ -1,0 +1,98 @@
+
+
+
+
+list1 =[4,6,7,8,12,14,16]
+# op=list1[2:4]
+# op=list1[1:6:2]
+# op=list1[1:8:1]
+# print(op)
+
+
+# op=list1[::2]
+# op=list1[::-1]
+# print(op)
+
+# 1.append()-->adds the single value at the end of the list
+
+list1=['hello','hi','12',15]
+# list1.append(4)
+# # list1.append(4,5)
+
+# print(list1)
+# print(list1[4])
+
+# 2.extend()
+
+# list1.extend([4,5,6])
+
+# list1.extend((4,5,6))
+# list1.extend({4,5,6})
+# print(list1)
+
+# list1.extend({'apple','python','java'})
+# print(list1)
+
+# 3.insert()
+
+# op=list1.insert(2,5)
+
+# op=list1.insert(2,[4,5,6])
+# print(list1)
+
+# 4.remove()
+
+# list1=[4,6,7,8,8,7]
+# list1.remove(7)
+# print(list1)
+
+# 5.pop()
+# list1=[4,6,7,8,8,7]
+# op=list1.pop(4)
+# list1.pop()
+# print(op)
+
+# 6.clear()
+
+# list1.clear()
+# print(list1)
+
+# 7.index()
+
+list1=[4,8,6,8,7,8,8,7]
+
+# op=list1.index(8,0,2)
+# print(op)
+
+# 8.sort()
+# list1.sort()
+# list1.sort(reverse=True)
+# print(list1)
+
+# 9.reverse()
+
+# list1.reverse()
+# print(list1)
+
+# 10.sorted()
+
+# list1.sort()
+# op=sorted(list1)
+# print(list1)
+
+# op=list1.sort()
+# print(op)
+# print(list1)
+
+# list2=[9,7,2,19,23,4,10]
+# op=sorted(list2)
+# print(op)
+# print(list2)
+
+# 11.join()
+
+list1=['apple','banana','orange','grapes']
+# op='  '.join(list1)
+# op='-'.join(list1)
+op=' and '.join(list1)
+print(op)
