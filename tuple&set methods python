@@ -1,0 +1,91 @@
+1.count()
+
+# tuple1=('python','green','blue','red','java')
+# # op=tuple1.count('python_new')
+# print(op)
+
+# 2.index()
+# op=tuple1.index('red')
+
+# print(op)
+
+# tp1=(1,2,3)
+# tp2=(4,5,6)
+# print(tp1+tp2)
+# tp3=('python','sql','excel')
+# op1=tp3*2
+# print(op1)
+
+
+# chocclates=('ch1','ch2','ch3','ch4','ch5')
+
+# chocclates=('ch1','ch2','ch3','ch4','ch5','ch6','ch7')
+# (*madarbi,divya,pooja,priya,mani)=chocclates
+# print(madarbi)
+# print(priya)
+# print(pooja)
+
+# nums=(1,2,3,4,5,6)
+# (*x,y,z)=nums
+# print(x)
+
+set_methods
+
+
+
+# set1={'hello','python','sql','red','orange'}
+
+# 1.add()
+
+# set1.add('biryani')
+# print(set1)
+
+# # 2.update()
+# set2={'pineapple','mango','grapes'}
+# set1.update(set2)
+# print(set1)
+
+# 3.remove()
+
+# set1.remove('sql')
+# print(set1)
+
+# 4.discard()
+
+# set1.discard('sql_lite')
+# print(set1)
+
+# 5.pop()
+
+# set1.pop()
+# print(set1)
+
+# # 6.union()
+
+# set1={1,2,3}
+# set2={4,5,6}
+# op=set1.union(set2)
+# print(op)
+
+# list1=['op','lp','qp']
+# op=set1.union(set2,list1)
+# print(op)
+
+# 6.intersection()
+
+set1={1,2,3,4,'hi'}
+set2={4,5,6,2,'hi'}
+set3={7,8,9,'hi'}
+# op=set1.intersection(set2,set3)
+op=set1&set2&set3
+print(op)
+
+# 7.difference()
+
+set1={'python','java','sql','excel'}
+set2={'python','sql','js'}
+op=set2.difference(set1)
+print(op)
+set3={'python','html','css','java'}
+op=set1.difference(set2,set3)
+print(op)
