@@ -1,0 +1,238 @@
+ MySQL  localhost:3306 ssl  strings  SQL > create table fun
+                                        -> (hero_name varchar(50),
+                                        -> movie_name varchar(50),
+                                        -> rating int check(rating between 1 and 5));
+Query OK, 0 rows affected (0.0687 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > insert into fun values
+                                        -> ("prabhas","dariling",5),
+                                        -> ("pawankalyan","og",1),
+                                        -> ("ramcharan","rrr",4),
+                                        -> ("ntr",devara",4);
+                                        "> ";
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '",4);
+"' at line 5
+ MySQL  localhost:3306 ssl  strings  SQL > insert into fun values  ("prabhas","dariling",5), ("pawankalyan","og",1), ("ramcharan","rrr",4), ("ntr","devara",4);
+Query OK, 4 rows affected (0.0506 sec)
+
+Records: 4  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  strings  SQL > select * from strings;
+ERROR: 1146 (42S02): Table 'strings.strings' doesn't exist
+ MySQL  localhost:3306 ssl  strings  SQL > select * from fun;
++-------------+------------+--------+
+| hero_name   | movie_name | rating |
++-------------+------------+--------+
+| prabhas     | dariling   |      5 |
+| pawankalyan | og         |      1 |
+| ramcharan   | rrr        |      4 |
+| ntr         | devara     |      4 |
++-------------+------------+--------+
+4 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select upper ("movies");
++------------------+
+| upper ("movies") |
++------------------+
+| MOVIES           |
++------------------+
+1 row in set (0.0346 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select upper ("movies") as uppercase_str;
++---------------+
+| uppercase_str |
++---------------+
+| MOVIES        |
++---------------+
+1 row in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select lower("movies") as lowercase_str;
++---------------+
+| lowercase_str |
++---------------+
+| movies        |
++---------------+
+1 row in set (0.0344 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select length ("string functions") as no_of_char;
++------------+
+| no_of_char |
++------------+
+|         16 |
++------------+
+1 row in set (0.0015 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select concat ("string","functions");
++-------------------------------+
+| concat ("string","functions") |
++-------------------------------+
+| stringfunctions               |
++-------------------------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select substr("weekend party",5,2);
++-----------------------------+
+| substr("weekend party",5,2) |
++-----------------------------+
+| en                          |
++-----------------------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select substr("weekend party",2);
++---------------------------+
+| substr("weekend party",2) |
++---------------------------+
+| eekend party              |
++---------------------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select substr("weekend party",2,90);
++------------------------------+
+| substr("weekend party",2,90) |
++------------------------------+
+| eekend party                 |
++------------------------------+
+1 row in set (0.0008 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select replace("weekend party","ee","hh");
++------------------------------------+
+| replace("weekend party","ee","hh") |
++------------------------------------+
+| whhkend party                      |
++------------------------------------+
+1 row in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select replace("weekend party","e","h");
++----------------------------------+
+| replace("weekend party","e","h") |
++----------------------------------+
+| whhkhnd party                    |
++----------------------------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select replace("weekend party","EE","HH");
++------------------------------------+
+| replace("weekend party","EE","HH") |
++------------------------------------+
+| weekend party                      |
++------------------------------------+
+1 row in set (0.0009 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select ltrim(" hello ");
++------------------+
+| ltrim(" hello ") |
++------------------+
+| hello            |
++------------------+
+1 row in set (0.0351 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select rtrim(" hello ");
++------------------+
+| rtrim(" hello ") |
++------------------+
+|  hello           |
++------------------+
+1 row in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select trim(" hello ");
++-----------------+
+| trim(" hello ") |
++-----------------+
+| hello           |
++-----------------+
+1 row in set (0.0352 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select * from fun;
++-------------+------------+--------+
+| hero_name   | movie_name | rating |
++-------------+------------+--------+
+| prabhas     | dariling   |      5 |
+| pawankalyan | og         |      1 |
+| ramcharan   | rrr        |      4 |
+| ntr         | devara     |      4 |
++-------------+------------+--------+
+4 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select upper(movie_name) as capital from fun;
++----------+
+| capital  |
++----------+
+| DARILING |
+| OG       |
+| RRR      |
+| DEVARA   |
++----------+
+4 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select *,upper(movie_name) as capital from fun;
++-------------+------------+--------+----------+
+| hero_name   | movie_name | rating | capital  |
++-------------+------------+--------+----------+
+| prabhas     | dariling   |      5 | DARILING |
+| pawankalyan | og         |      1 | OG       |
+| ramcharan   | rrr        |      4 | RRR      |
+| ntr         | devara     |      4 | DEVARA   |
++-------------+------------+--------+----------+
+4 rows in set (0.0014 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select replace (hero_name,"a","k") as replacing from fun;
++-------------+
+| replacing   |
++-------------+
+| prkbhks     |
+| pkwknkklykn |
+| rkmchkrkn   |
+| ntr         |
++-------------+
+4 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select replace (hero_name,"k","a") as replacing from fun;
++-------------+
+| replacing   |
++-------------+
+| prabhas     |
+| pawanaalyan |
+| ramcharan   |
+| ntr         |
++-------------+
+4 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select concat(movie_name,rating) from fun;
++---------------------------+
+| concat(movie_name,rating) |
++---------------------------+
+| dariling5                 |
+| og1                       |
+| rrr4                      |
+| devara4                   |
++---------------------------+
+4 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select concat(movie_name," ",rating) from fun;
++-------------------------------+
+| concat(movie_name," ",rating) |
++-------------------------------+
+| dariling 5                    |
+| og 1                          |
+| rrr 4                         |
+| devara 4                      |
++-------------------------------+
+4 rows in set (0.0017 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select concat(movie_name,",",rating) from fun;
++-------------------------------+
+| concat(movie_name,",",rating) |
++-------------------------------+
+| dariling,5                    |
+| og,1                          |
+| rrr,4                         |
+| devara,4                      |
++-------------------------------+
+4 rows in set (0.0012 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select concat(hero_name,"hro") from fun;
++-------------------------+
+| concat(hero_name,"hro") |
++-------------------------+
+| prabhashro              |
+| pawankalyanhro          |
+| ramcharanhro            |
+| ntrhro                  |
++-------------------------+
+4 rows in set (0.0010 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select concat(hero_name," ","hro") from fun;
++-----------------------------+
+| concat(hero_name," ","hro") |
++-----------------------------+
+| prabhas hro                 |
+| pawankalyan hro             |
+| ramcharan hro               |
+| ntr hro                     |
++-----------------------------+
+4 rows in set (0.0011 sec)
+ MySQL  localhost:3306 ssl  strings  SQL > select length(concat(hero_name," ","hro")) from fun;
++-------------------------------------+
+| length(concat(hero_name," ","hro")) |
++-------------------------------------+
+|                                  11 |
+|                                  15 |
+|                                  13 |
+|                                   7 |
++-------------------------------------+
+4 rows in set (0.0013 sec)
+ MySQL  localhost:3306 ssl  strings  SQL >
